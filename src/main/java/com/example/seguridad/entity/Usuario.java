@@ -32,7 +32,7 @@ public class Usuario {
 	@Column(name="password")
 	private String password;
 	@Column(name="estado")
-	private Boolean estado;
+	private Boolean estado=true;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(

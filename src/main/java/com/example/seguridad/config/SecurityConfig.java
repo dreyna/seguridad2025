@@ -21,7 +21,7 @@ import com.example.seguridad.service.CustomUserDetailsService;
 public class SecurityConfig {
 	@Autowired
     private CustomUserDetailsService userDetailsService;
-	
+
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 	    http

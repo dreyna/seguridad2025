@@ -46,6 +46,9 @@ public class UsuarioService {
             throw new IllegalArgumentException("El nombre de usuario ya está en uso por otro usuario.");
         }
 
+        if ((usuario.getId() == null || usuario.getId() != null) && (!usuario.getPassword().equals(existente.map(Usuario::getPassword).orElse(""))  || usuario.getPassword().equals(existente.map(Usuario::getPassword).orElse("")))) {
+            usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+        }
         Set<Rol> rolesCompletos = usuario.getRoles().stream()
             .map(r -> rolRepository.findById(r.getId()).orElseThrow())
             .collect(Collectors.toSet());
