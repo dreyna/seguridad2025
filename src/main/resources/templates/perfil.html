@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Perfil de Usuario</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+	crossorigin="anonymous">
+</head>
+<body>
+
+	<div class="container mt-5" style="max-width: 600px;">
+		<h2>Perfil de Usuario</h2>
+		<p>
+			<strong>Nombre de usuario:</strong> <span th:text="${username}"></span>
+		</p>
+
+		<!-- Mensajes -->
+		<div th:if="${mensaje}" class="alert alert-success"
+			th:text="${mensaje}"></div>
+		<div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+		<!-- Formulario de cambio de contraseña -->
+		<form th:action="@{/perfil/cambiar-contrasena}" method="post">
+			<div class="mb-3">
+				<label for="actualContrasena" class="form-label">Contraseña
+					Actual</label> <input type="password" class="form-control"
+					id="actualContrasena" name="actualContrasena" required>
+			</div>
+			<div class="mb-3">
+				<label for="nuevaContrasena" class="form-label">Nueva
+					Contraseña</label> <input type="password" class="form-control"
+					id="nuevaContrasena" name="nuevaContrasena" required>
+			</div>
+			<div class="mb-3">
+				<label for="repetirContrasena" class="form-label">Repetir
+					Nueva Contraseña</label> <input type="password" class="form-control"
+					id="repetirContrasena" name="repetirContrasena" required>
+			</div>
+
+			<div class="d-flex justify-content-between">
+				<!-- Botón Actualizar -->
+				<button type="submit" class="btn btn-primary">Actualizar
+					Contraseña</button>
+
+				<!-- Botón Cancelar -->
+				<a th:href="@{/dashboard}" class="btn btn-secondary">Cancelar</a>
+			</div>
+		</form>
+	</div>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+		crossorigin="anonymous"></script>
+</body>
+</html>

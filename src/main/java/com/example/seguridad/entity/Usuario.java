@@ -1,6 +1,6 @@
 package com.example.seguridad.entity;
+import java.util.HashSet;
 import java.util.Set;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -38,7 +38,6 @@ public class Usuario {
 	@JoinTable(
 	 name="usuario_rol",
 	 joinColumns = @JoinColumn(name="usuario_id", referencedColumnName = "id"),
-	 inverseJoinColumns = @JoinColumn(name="rol_id", referencedColumnName = "id")
-			)
-	private Set<Rol> roles;
+	 inverseJoinColumns = @JoinColumn(name="rol_id", referencedColumnName = "id")			)
+	private Set<Rol> roles = new HashSet<>();
 }
