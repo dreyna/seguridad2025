@@ -7,7 +7,56 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">MiApp</a>
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active"
+                                        th:href="@{/dashboard}">Inicio</a></li>
+                <li class="nav-item" sec:authorize="hasRole('USER')"><a
+                        class="nav-link" th:href="@{/user}">Zona Usuario</a></li>
+                <li class="nav-item" sec:authorize="hasRole('ADMIN')"><a
+                        class="nav-link" th:href="@{/admin}">Zona Admin</a></li>
+                <li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')">
+                    <a class="nav-link dropdown-toggle" href="#" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Administración </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" th:href="@{/usuarios}">Mantenimiento
+                            de Usuarios</a></li>
+                        <!-- puedes agregar otras opciones como Mantenimiento de Roles -->
+                    </ul>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown"><a
+                        class="nav-link dropdown-toggle" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false"> <span
+                        sec:authentication="name">Usuario</span>
+                </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" th:href="@{/perfil}">Mi
+                            Perfil</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <form th:action="@{/logout}" method="post" style="margin: 0;">
+                                <button type="submit" class="dropdown-item">Cerrar
+                                    sesión</button>
+                            </form>
+                        </li>
+                    </ul></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <div class="container mt-5">
     <h2>Zona del Administrador</h2>
     <p>Bienvenido, <span sec:authentication="name"></span>. Tienes acceso como <strong>ADMINISTRADOR</strong>.</p>
